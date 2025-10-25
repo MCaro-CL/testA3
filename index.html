@@ -39,7 +39,7 @@
     </div>
 
     <script>
-        // Data del examen: BANDO DE 150 PREGUNTAS (Se seleccionarán 35 al azar por cada test)
+        // Data del examen: BANDO DE 150 PREGUNTAS (Se seleccionarán 20 al azar por cada test)
         const allQuestions = [
             // Bloque 1: Actitud y Seguridad (Preguntas 1-50 existentes)
             {
@@ -2905,14 +2905,14 @@
 
         let state = {
             view: 'start', // 'start', 'quiz', 'results', 'review'
-            questions: [], // Preguntas barajadas (siempre 35)
+            questions: [], // Preguntas barajadas (siempre 20)
             currentQuestionIndex: 0,
             userAnswers: [], // { questionId: number, selectedIndex: number }
             score: { correct: 0, incorrect: 0 }
         };
 
         const appElement = document.getElementById('app');
-        const TEST_SIZE = 35; // Tamaño fijo del examen (35 preguntas)
+        const TEST_SIZE = 20; // Tamaño fijo del examen (20 preguntas)
 
         // --- Utilidades ---
 
@@ -2934,9 +2934,9 @@
         // --- Lógica del Estado ---
 
         function startQuiz() {
-            // 1. OBTENER MUESTRA ALEATORIA: Seleccionar 35 preguntas al azar del banco completo
+            // 1. OBTENER MUESTRA ALEATORIA: Seleccionar 20 preguntas al azar del banco completo
             if (allQuestions.length < TEST_SIZE) {
-                console.error("No hay suficientes preguntas en el banco para crear un test de 35.");
+                console.error("No hay suficientes preguntas en el banco para crear un test de 20.");
                 return;
             }
             const quizQuestions = getRandomSample(allQuestions, TEST_SIZE);
@@ -3046,10 +3046,10 @@
         function renderStart() {
             appElement.innerHTML = `
                 <div class="text-center p-4">
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-700 mb-4">Simulador Dinámico Examen A3 Profesional (35 Preguntas)</h1>
-                    <p class="text-gray-600 mb-8">Practica el examen teórico para la Licencia A3 (Transporte de Pasajeros). Cada test selecciona **35 preguntas al azar** de un banco ampliado.</p>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-700 mb-4">Simulador Dinámico Examen A4 Profesional (20 Preguntas)</h1>
+                    <p class="text-gray-600 mb-8">Practica el examen teórico para la Licencia A3 (Transporte de Pasajeros). Cada test selecciona **20 preguntas al azar** de un banco ampliado.</p>
                     <p class="text-lg font-medium text-gray-800 mb-10 border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-lg">
-                        <span class="font-bold">Criterio de Aprobación:</span> Necesitas acertar al menos 28 preguntas (80%). ¡Mucha suerte!
+                        <span class="font-bold">Criterio de Aprobación:</span> Necesitas acertar al menos 16 preguntas (80%). ¡Mucha suerte!
                     </p>
                     <button onclick="startQuiz()"
                         class="w-full sm:w-auto px-12 py-3 bg-green-600 text-white text-xl font-bold rounded-xl shadow-lg hover:bg-green-700 transition duration-300 transform hover:scale-105">
@@ -3129,7 +3129,7 @@
             const totalQuestions = state.questions.length;
             const incorrectOrMissed = totalQuestions - correct;
             const percentage = (correct / totalQuestions) * 100;
-            const isApproved = correct >= 28; // Criterio de aprobación (28/35 = 80%)
+            const isApproved = correct >= 16; // Criterio de aprobación (16/20 = 80%)
             const statusColor = isApproved ? 'text-green-600' : 'text-red-600';
             const statusBg = isApproved ? 'bg-green-50' : 'bg-red-50';
 
